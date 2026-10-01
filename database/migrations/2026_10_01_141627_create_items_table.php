@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('location_found');
             $table->date('date_found');
             $table->string('photo_path');
-            $table->enum('status', ['unclaimed', 'claimed', 'trans'])->default('unclaimed');
+            $table->enum('status', ['unclaimed', 'claimed', 'transferred'])->default('unclaimed');
             $table->timestamps();
         });
     }
