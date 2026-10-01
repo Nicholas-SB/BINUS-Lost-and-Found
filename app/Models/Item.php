@@ -21,6 +21,6 @@ class Item extends Model
     ];
 
     public function claim(){
-        return $this->hasone(Claim::class);
+        return $this->hasOne(Claim::class);
     }
 }

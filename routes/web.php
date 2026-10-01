@@ -1,11 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItemController;
+Use App\Http\Controllers\ClaimController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// customer side (no login)
+Route::get('/', [ItemController::class, 'index'])->name('items.index');
+Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
+Route::view('/guide', 'guide')->name('guide');
 
 Auth::routes(['register' => false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// officer side (login required)
+Route::middleware('auth')->prefix('officer')->name('officer.')->group(function (){
+    Route::get('/', [ItemController::class, 'dashboard'])->name('dashboard');
+    Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
+    Route::post('/items', [ItemController::class, 'store'])->name('items.store');
+    Route::patch('/items/{item}/transfer', [ItemController::class, 'transfer'])->name('items.transfer');
+    Route::get('/items/{item}/claim', [ClaimController::class, 'create'])->name('claims.create');
+    Route::post('/items/{item}/claim', [ClaimController::class, 'store'])->name('claims.store');
+    Route::get('/claims/{claim}/print', [ClaimController::class, 'print'])->name('claims.print');
+});
