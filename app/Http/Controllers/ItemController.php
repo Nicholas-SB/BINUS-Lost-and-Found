@@ -33,7 +33,7 @@ class ItemController extends Controller{
             ->where('date_found', '<', now()->subWeek())
             ->get();
         
-        $items = Item::with('claim')->latest()->paginate(20);
+        $items = Item::with('claim')->latest()->paginate(10); // change paginate as however the binusians like it to be. For now, keep at 10 for showcase
 
         return view('officer.dashboard', compact('overdue', 'items'));
     }
