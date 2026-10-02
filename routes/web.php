@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
-Use App\Http\Controllers\ClaimController;
+use App\Http\Controllers\ClaimController;
 
 // customer side (no login)
 Route::get('/', [ItemController::class, 'index'])->name('items.index');

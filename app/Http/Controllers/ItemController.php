@@ -27,4 +27,19 @@ class ItemController extends Controller{
 
         return redirect()->route('officer.dashboard')->with('success', 'Item logged.');
     }
+
+    public function dashboard(){
+        $overdue = Item::where('status', 'unclaimed')
+            ->where('date_found', '<', now()->subWeek())
+            ->get();
+        
+        $items = Item::with('claim')->latest()->paginate(20);
+
+        return view('officer.dashboard', compact('overdue', 'items'));
+    }
+
+    public function transfer(Item $item){
+        $item->update(['status' => 'transferred']);
+        return back()->with('success', 'Marked as transferred to BM (Business Management)');
+    }
 }
