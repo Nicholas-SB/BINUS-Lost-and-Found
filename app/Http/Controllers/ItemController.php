@@ -33,7 +33,7 @@ class ItemController extends Controller{
             ->where('date_found', '<', now()->subWeek())
             ->get();
         
-        $items = Item::with('claim')->latest()->paginate(10); // change paginate as however the binusians like it to be. For now, keep at 10 for showcase
+        $items = Item::with('claim')->latest()->paginate(15); // change paginate as however the binusians like it to be. For now, keep at 15 for showcase
 
         return view('officer.dashboard', compact('overdue', 'items'));
     }
@@ -41,5 +41,14 @@ class ItemController extends Controller{
     public function transfer(Item $item){
         $item->update(['status' => 'transferred']);
         return back()->with('success', 'Marked as transferred to BM (Business Management)');
+    }
+
+    public function index(Request $request){
+        $items = Item::whereIn('status', ['unclaimed', 'transferred'])
+            ->where('name', 'like', "%{$request->q}%")
+            ->latest('date_found')
+            ->paginate(15);
+
+        return view('items.index', compact('items'));
     }
 }

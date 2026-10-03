@@ -6,3 +6,8 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+.item-photo {
+    height: 220px;
+    object-fit: cover;
+}
