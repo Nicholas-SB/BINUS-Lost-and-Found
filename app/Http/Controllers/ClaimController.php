@@ -30,6 +30,6 @@ class ClaimController extends Controller
             $item->update(['status' => 'claimed']);
             return $claim;
         });
-        return redirect()->route('officer.claim.print', $claim);
+        return redirect()->route('officer.claims.print', $claim);
     }
 }
