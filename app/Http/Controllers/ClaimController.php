@@ -32,4 +32,9 @@ class ClaimController extends Controller
         });
         return redirect()->route('officer.claims.print', $claim);
     }
+
+    public function print(Claim $claim){
+        $claim->load('item', 'officer');
+        return view('officer.claims.print', compact('claim'));
+    }
 }
