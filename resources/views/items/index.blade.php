@@ -8,7 +8,7 @@
 
     <h1>Items</h1>
     <div class="row">
-        @foreach ($items as $item)
+        @forelse ($items as $item)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <img src="{{ asset('storage/' . $item->photo_path) }}" class="card-img-top" style="height: 220px; object-fit: cover;">
@@ -18,8 +18,14 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            {{-- Keep col-12 in case we put layout classes l8er --}}
+            <div class="col-12">
+                <h5>No items found.</h5>
+            </div>
+        @endforelse
     </div>
+    {{ $items->links() }}
 </div>
 
 @endsection
