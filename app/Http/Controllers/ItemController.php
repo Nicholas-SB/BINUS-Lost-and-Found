@@ -46,6 +46,8 @@ class ItemController extends Controller{
     public function index(Request $request){
         $items = Item::whereIn('status', ['unclaimed', 'transferred'])
             ->where('name', 'like', "%{$request->q}%")
+            ->when($request->from, fn($query, $from) => $query->whereDate('date_found', '>=', $from))
+            ->when($request->to, fn($query, $to) => $query->whereDate('date_found', '<=', $to))
             ->latest('date_found')
             ->paginate(15)
             ->withQueryString();
