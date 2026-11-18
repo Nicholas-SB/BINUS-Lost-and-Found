@@ -54,4 +54,9 @@ class ItemController extends Controller{
 
         return view('items.index', compact('items'));
     }
+
+    public function show(Item $item){
+        abort_if($item->status === 'claimed', 404);
+        return view('items.show', compact('item'));
+    }
 }

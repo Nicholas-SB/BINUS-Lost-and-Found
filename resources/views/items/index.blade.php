@@ -30,6 +30,7 @@
                 <div class="card h-100">
                     <img src="{{ asset('storage/' . $item->photo_path) }}" class="card-img-top" style="height: 220px; object-fit: cover;">
                     <div class="card-body">
+                        <a href="{{ route('items.show', $item) }}" class="stretched-link"></a>
                         <h5>{{ $item->name }}</h5>
                         <p>{{ $item->date_found->format('l, d M Y') }}</p>
                     </div>
