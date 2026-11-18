@@ -38,6 +38,10 @@
                                 <a class="nav-link" href="{{ route('officer.items.create') }}">{{ __('Post an Item') }}</a>
                             </li>
                         @endauth
+
+                        @guest
+                            <a class="nav-link"  href="{{ route('guide') }}">Guide to Claim</a>
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
