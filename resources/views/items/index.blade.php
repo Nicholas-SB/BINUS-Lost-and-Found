@@ -7,7 +7,17 @@
         <div class="col-12">
             <input type="text" name="q" value="{{ request('q') }}" class="form-control" placeholder="Search Items...">
         </div>
-        
+
+        {{-- Category filter --}}
+        <div class="col-md-3">
+            <select name="category" class="form-select">
+                <option value="">All categories</option>
+                @foreach (['Electronics', 'Bottles', 'Clothing', 'Accessories', 'Documents', 'Other'] as $cat)
+                    <option value="{{ $cat }}" @selected(request('category') === $cat)>{{ $cat }}</option>
+                @endforeach
+            </select>
+        </div>
+
         {{-- Date filter --}}
         <div class="col-md-2">
             <label class="form-label small mb-0">From</label>
