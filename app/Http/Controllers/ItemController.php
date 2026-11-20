@@ -28,14 +28,18 @@ class ItemController extends Controller{
         return redirect()->route('officer.dashboard')->with('success', 'Item logged.');
     }
 
-    public function dashboard(){
-        $overdue = Item::where('status', 'unclaimed')
-            ->where('date_found', '<', now()->subWeek())
-            ->get();
-        
-        $items = Item::with('claim')->latest()->paginate(15); // change paginate as however the binusians like it to be. For now, keep at 15 for showcase
+    public function dashboard(Request $request){        
+        $items = Item::with('claim')
+            ->filter($request)
+            ->when($request->view === 'unclaimed', fn($query) => $query->where('status', 'unclaimed'))
+            ->when($request->view === 'claimed', fn($query) => $query->where('status', 'claimed'))
+            ->when($request->view === 'transfer', fn($query) => $query->where('status', 'unclaimed')->where('date_found', '<', now()->subWeek()))
+            ->when($request->view === 'transferred', fn($query) => $query->where('status', 'transferred'))
+            ->latest('date_found')
+            ->paginate(15) // change paginate as however the binusians like it to be. For now, keep at 15 for showcase
+            ->withQueryString();
 
-        return view('officer.dashboard', compact('overdue', 'items'));
+        return view('officer.dashboard', compact('items'));
     }
 
     public function transfer(Item $item){
@@ -45,13 +49,7 @@ class ItemController extends Controller{
 
     public function index(Request $request){
         $items = Item::whereIn('status', ['unclaimed', 'transferred'])
-            ->where(function ($query) use ($request) {
-                $query->where('name', 'like', "%{$request->q}%")
-                ->orWhere('location_found', 'like', "%{$request->q}%");
-            })
-            ->when($request->from, fn($query, $from) => $query->whereDate('date_found', '>=', $from))
-            ->when($request->to, fn($query, $to) => $query->whereDate('date_found', '<=', $to))
-            ->when($request->category, fn($query, $category) => $query->where('category', $category))
+            ->filter($request)
             ->latest('date_found')
             ->paginate(15)
             ->withQueryString();
