@@ -5,7 +5,7 @@
     <form method="GET" action="{{ route('items.index') }}" class="row g-2 mb-4 align-items-end">
         {{-- Text filter --}}
         <div class="col-12">
-            <input type="text" name="q" value="{{ request('q') }}" class="form-control" placeholder="Search Items...">
+            <input type="text" name="q" value="{{ request('q') }}" class="form-control" placeholder="Search Items or Location...">
         </div>
 
         {{-- Category filter --}}
