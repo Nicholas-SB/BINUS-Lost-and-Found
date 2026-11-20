@@ -58,7 +58,9 @@ class ItemController extends Controller{
     }
 
     public function show(Item $item){
-        abort_if($item->status === 'claimed', 404);
+        // Guests can't see claimed items; officers can (to reprint the slip or fix the claim)
+        abort_if($item->status === 'claimed' && ! auth()->check(), 404);
+        $item->load('claim');
         return view('items.show', compact('item'));
     }
 }

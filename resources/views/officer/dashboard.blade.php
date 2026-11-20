@@ -45,7 +45,7 @@
             @foreach ($items as $item)
                 <tr>
                     <td><img src="{{ asset('storage/' . $item->photo_path) }}" class="rounded" style="height: 60px; width: 60px; object-fit: cover;"></td>
-                    <td>{{ $item->name }}</td>
+                    <td><a href="{{ route('items.show', $item) }}">{{ $item->name }}</a></td>
                     <td>{{ $item->location_found }}</td>
                     <td>{{ $item->date_found->format('l, d M Y') }}</td>
                     <td>{{ $item->status }}</td>
