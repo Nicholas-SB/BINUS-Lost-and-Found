@@ -1,7 +1,11 @@
 @extends('layouts.app')
 @section('content')
 <div class='container py-4'>
-    <a href="{{ route('items.index') }}">Back to list</a>
+    @auth
+        <a href="{{ route('officer.dashboard') }}">Back to dashboard</a>
+    @else
+        <a href="{{ route('items.index') }}">Back to list</a>
+    @endauth
 
     <div class="card mt-3">
         <div class="row g-0">
