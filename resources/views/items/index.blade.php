@@ -42,7 +42,7 @@
                     <div class="card-body">
                         <a href="{{ route('items.show', $item) }}" class="stretched-link"></a>
                         <h5>{{ $item->name }}</h5>
-                        <p>{{ $item->date_found->format('l, d M Y') }}</p>
+                        <p class="text-muted mb-0">{{ $item->location_found }} - {{ $item->date_found->format('l, d M Y') }}</p>
                     </div>
                 </div>
             </div>

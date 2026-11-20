@@ -14,7 +14,7 @@
                     <p>{{ $item->description ?? '-' }}</p>
 
                     <p><strong>Found at: </strong>{{ $item->location_found }}</p>
-                    <p><strong>Date found: </strong>{{ $item->date_found }}</p>
+                    <p><strong>Date found: </strong>{{ $item->date_found->format('l, d M Y') }}</p>
                 </div>
             </div>
         </div>
