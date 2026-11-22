@@ -19,6 +19,7 @@ Route::middleware('auth')->prefix('officer')->name('officer.')->group(function (
     Route::patch('/items/{item}/transfer', [ItemController::class, 'transfer'])->name('items.transfer');
     Route::get('/items/{item}/edit', [ItemController::class, 'edit'])->name('items.edit');
     Route::patch('/items/{item}', [ItemController::class, 'update'])->name('items.update');
+    Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
     Route::get('/items/{item}/claim', [ClaimController::class, 'create'])->name('claims.create');
     Route::post('/items/{item}/claim', [ClaimController::class, 'store'])->name('claims.store');
     Route::get('/claims/{claim}/print', [ClaimController::class, 'print'])->name('claims.print');

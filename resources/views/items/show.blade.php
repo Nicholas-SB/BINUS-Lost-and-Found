@@ -46,7 +46,11 @@
                             @endif
 
                             <a href="{{ route('officer.items.edit', $item) }}" class="btn btn-outline-primary btn-sm">Edit</a>
-                            {{-- TODO: Delete Item button --}}
+                            <form method="POST" action="{{ route('officer.items.destroy', $item) }}" class="d-inline" onsubmit="return confirm('Delete this item? This cannot be undone')">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-outline-danger btn-sm">Delete</button>
+                            </form>
                         </div>
                     @endauth
                 </div>

@@ -88,4 +88,10 @@ class ItemController extends Controller{
 
         return redirect()->route('items.show', $item)->with('success', 'Item updated.');
     }
+
+    public function destroy(Item $item){
+        Storage::disk('public')->delete($item->photo_path);
+        $item->delete();
+        return redirect()->route('officer.dashboard')->with('success', 'Item deleted.');
+    }
 }
