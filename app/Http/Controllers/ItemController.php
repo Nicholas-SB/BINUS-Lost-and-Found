@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
+use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller{
     public function create(){
@@ -58,9 +59,33 @@ class ItemController extends Controller{
     }
 
     public function show(Item $item){
-        // Guests can't see claimed items; officers can (to reprint the slip or fix the claim)
         abort_if($item->status === 'claimed' && ! auth()->check(), 404);
         $item->load('claim');
         return view('items.show', compact('item'));
+    }
+
+    public function edit(Item $item){
+        return view('officer.items.edit', compact('item'));
+    }
+
+    public function update(Request $request, Item $item){
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'category' => 'required|string|max:100',
+            'location_found' => 'required|string|max:255',
+            'date_found' => 'required|date|before_or_equal:today',
+            'photo' => 'nullable|image|max:2048',
+        ]);
+
+        if ($request->hasFile('photo')){
+            Storage::disk('public')->delete($item->photo_path);
+            $validated['photo_path'] = $request->file('photo')->store('items', 'public');
+        }
+
+        unset($validated['photo']);
+        $item->update($validated);
+
+        return redirect()->route('items.show', $item)->with('success', 'Item updated.');
     }
 }

@@ -7,6 +7,12 @@
         <a href="{{ route('items.index') }}">Back to list</a>
     @endauth
 
+    @if (session('success'))
+        <div class='alert alert-success'>{{ session('success') }}</div>
+    @elseif (session('error'))
+        <div class='alert alert-danger'>{{ session('error') }}</div>
+    @endif
+
     <div class="card mt-3">
         <div class="row g-0">
             <div class="col-md-5">
@@ -39,7 +45,7 @@
                                 {{-- TODO: Cancel Claim button --}}
                             @endif
 
-                            {{-- TODO: Edit Item button --}}
+                            <a href="{{ route('officer.items.edit', $item) }}" class="btn btn-outline-primary btn-sm">Edit</a>
                             {{-- TODO: Delete Item button --}}
                         </div>
                     @endauth
