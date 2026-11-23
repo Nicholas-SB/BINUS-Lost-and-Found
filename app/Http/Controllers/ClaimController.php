@@ -37,4 +37,13 @@ class ClaimController extends Controller
         $claim->load('item', 'officer');
         return view('officer.claims.print', compact('claim'));
     }
+
+    public function destroy(Claim $claim){
+        $item = $claim->item;
+        DB::transaction(function () use ($claim, $item){
+            $item->update(['status' => 'unclaimed']);
+            $claim->delete();
+        });
+        return redirect()->route('items.show', $item)->with('success', 'Claim reverted.');
+    }
 }

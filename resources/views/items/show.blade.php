@@ -42,7 +42,11 @@
                                 <a href="{{ route('officer.claims.create', $item) }}" class="btn btn-primary btn-sm">Record Claim</a>
                             @else
                                 <a href="{{ route('officer.claims.print', $item->claim) }}" class="btn btn-outline-secondary btn-sm">Reprint Claim Slip</a>
-                                {{-- TODO: Cancel Claim button --}}
+                                <form method="POST" action="{{ route('officer.claims.destroy', $item->claim) }}" class="d-inline" onsubmit="return confirm('Cancel this claim?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-outline-primary btn-sm">Cancel Claim</button>
+                                </form>
                             @endif
 
                             <a href="{{ route('officer.items.edit', $item) }}" class="btn btn-outline-primary btn-sm">Edit</a>

@@ -23,4 +23,5 @@ Route::middleware('auth')->prefix('officer')->name('officer.')->group(function (
     Route::get('/items/{item}/claim', [ClaimController::class, 'create'])->name('claims.create');
     Route::post('/items/{item}/claim', [ClaimController::class, 'store'])->name('claims.store');
     Route::get('/claims/{claim}/print', [ClaimController::class, 'print'])->name('claims.print');
+    Route::delete('/claims/{claim}', [ClaimController::Class, 'destroy'])->name('claims.destroy');
 });
