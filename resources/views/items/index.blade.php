@@ -6,11 +6,11 @@
         @include('partials.item-filters')
 
         <div class="col-md-2">
-            <button class="btn btn-primary w-100">Search</button>
+            <button class="btn btn-primary w-100">{{ __('site.search') }}</button>
         </div>
     </form>
 
-    <h1>Items</h1>
+    <h1>{{ __('site.items') }}</h1>
     <div class="row">
         @forelse ($items as $item)
             <div class="col-md-4 mb-4">

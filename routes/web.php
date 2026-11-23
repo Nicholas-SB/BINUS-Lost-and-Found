@@ -8,6 +8,11 @@ use App\Http\Controllers\ClaimController;
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
 Route::view('/guide', 'guide')->name('guide');
+Route::get('lang/{locale}/', function ($locale) {
+    abort_unless(in_array($locale, ['en', 'id']), 404);
+    session(['locale' => $locale]);
+    return back();
+})->name('lang.switch');
 
 Auth::routes(['register' => false]);
 

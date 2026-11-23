@@ -41,12 +41,20 @@
                         @endauth
 
                         @guest
-                            <a class="nav-link"  href="{{ route('guide') }}">Guide to Claim</a>
+                            <a class="nav-link"  href="{{ route('guide') }}">{{ __('site.guide') }}</a>
                         @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item d-flex align-items-center me-2">
+                            <a class="nav-link {{ app()->getLocale() === 'en' ? 'fw-bold' : ' ' }}"
+                            href="{{ route('lang.switch', 'en') }}">EN</a>
+                            <span class="text-muted">|</span>
+                            <a class="nav-link {{ app()->getLocale() === 'id' ? 'fw-bold' : ' ' }}"
+                            href="{{ route('lang.switch', 'id') }}">ID</a>
+                        </li>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
