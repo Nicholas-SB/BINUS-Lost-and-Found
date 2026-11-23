@@ -59,7 +59,7 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('site.login') }}</a>
                                 </li>
                             @endif
 
@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        <h6 class="fw-bold">LOCATION</h6>
+                        <h6 class="fw-bold">{{ __('site.location') }}</h6>
                         <p class="d-flex mb-0">
                             <i class="bi bi-geo-alt-fill me-2"></i>
                             <span>Jl. K. H. Syahdan No. 9, Kemanggisan, Palmerah<br>Jakarta 11480 Indonesia</span>
@@ -113,7 +113,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        <h6 class="fw-bold">CONTACT US</h6>
+                        <h6 class="fw-bold">{{ __('site.contact_us') }}</h6>
                         <p class="d-flex mb-1">
                             <i class="bi bi-telephone-fill me-2"></i>
                             <span>0804 169 69 69 · 62852 08 696969 (WhatsApp)</span>

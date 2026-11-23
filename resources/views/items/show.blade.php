@@ -4,7 +4,7 @@
     @auth
         <a href="{{ route('officer.dashboard') }}">Back to dashboard</a>
     @else
-        <a href="{{ route('items.index') }}">Back to list</a>
+        <a href="{{ route('items.index') }}">{{ __('site.back_to_list') }}</a>
     @endauth
 
     @if (session('success'))
@@ -23,8 +23,8 @@
                     <h1 class="card-title">{{ $item->name }}</h1>
                     <p>{{ $item->description ?? '-' }}</p>
 
-                    <p><strong>Found at: </strong>{{ $item->location_found }}</p>
-                    <p><strong>Date found: </strong>{{ $item->date_found->format('l, d M Y') }}</p>
+                    <p><strong>{{ __('site.found_at') }}: </strong>{{ $item->location_found }}</p>
+                    <p><strong>{{ __('site.date_found') }}: </strong>{{ $item->date_found->translatedFormat('l, d M Y') }}</p>
 
                     {{-- Officer-only actions (guests never see this block) --}}
                     @auth

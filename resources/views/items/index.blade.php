@@ -19,14 +19,14 @@
                     <div class="card-body">
                         <a href="{{ route('items.show', $item) }}" class="stretched-link"></a>
                         <h5>{{ $item->name }}</h5>
-                        <p class="text-muted mb-0">{{ $item->location_found }} - {{ $item->date_found->format('l, d M Y') }}</p>
+                        <p class="text-muted mb-0">{{ $item->location_found }} - {{ $item->date_found->translatedFormat('l, d M Y') }}</p>
                     </div>
                 </div>
             </div>
         @empty
             {{-- Keep col-12 in case we put layout classes l8er --}}
             <div class="col-12">
-                <h5>No items found.</h5>
+                <h5>{{ __('site.no_items') }}</h5>
             </div>
         @endforelse
     </div>
