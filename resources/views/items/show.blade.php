@@ -2,9 +2,9 @@
 @section('content')
 <div class='container py-4'>
     @auth
-        <a href="{{ route('officer.dashboard') }}">Back to dashboard</a>
+        <a href="{{ route('officer.dashboard') }}" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back to dashboard</a>
     @else
-        <a href="{{ route('items.index') }}">{{ __('site.back_to_list') }}</a>
+        <a href="{{ route('items.index') }}" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> {{ __('site.back_to_list') }}</a>
     @endauth
 
     @if (session('success'))
@@ -16,12 +16,14 @@
     <div class="card mt-3">
         <div class="row g-0">
             <div class="col-md-5">
-                <img src="{{ asset('storage/' . $item->photo_path) }}" class="w-100 rounded-start" style="height: 400px; object-fit: contain;">
+                <img src="{{ asset('storage/' . $item->photo_path) }}" class="w-100 rounded-start" style="height: 400px; object-fit: contain; background-color: #212529;">
             </div>
             <div class="col-md-7">
                 <div class="card-body">
                     <h1 class="card-title">{{ $item->name }}</h1>
-                    <p>{{ $item->description ?? '-' }}</p>
+                    @if ($item->description)
+                        <p>{{ $item->description }}</p>
+                    @endif
 
                     <p><strong>{{ __('site.found_at') }}: </strong>{{ $item->location_found }}</p>
                     <p><strong>{{ __('site.date_found') }}: </strong>{{ $item->date_found->translatedFormat('l, d M Y') }}</p>
