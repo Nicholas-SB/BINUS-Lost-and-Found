@@ -116,7 +116,7 @@
                         <h6 class="fw-bold">{{ __('site.contact_us') }}</h6>
                         <p class="d-flex mb-1">
                             <i class="bi bi-telephone-fill me-2"></i>
-                            <span>0804 169 69 69 · 62852 08 696969 (WhatsApp)</span>
+                            <span>(021) 53696969 ext. 7018</span>
                         </p>
                         <p class="d-flex mb-0">
                             <i class="bi bi-envelope me-2"></i>
