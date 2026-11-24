@@ -14,9 +14,9 @@ class OfficerSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'Officer Chris',
-            'email' => 'OfficerChris@gmail.com',
-            'password' => 'OfficerChris',
+            'name' => 'Officer Nicholas',
+            'email' => config('app.officer.email'),
+            'password' => config('app.officer.password'),
         ]);
     }
 }
