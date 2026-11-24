@@ -13,7 +13,7 @@ return [
     'to' => 'Sampai',
     'no_items' => 'Tidak ada barang yang ditemukan.',
 
-    // categories (database values stay in English; only the label is translated)
+    // categories
     'categories' => [
         'Electronics' => 'Elektronik',
         'Bottles' => 'Botol',

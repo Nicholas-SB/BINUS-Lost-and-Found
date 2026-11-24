@@ -26,7 +26,7 @@ class ItemController extends Controller{
 
         Item::create($validated);
 
-        return redirect()->route('officer.dashboard')->with('success', 'Item logged.');
+        return redirect()->route('officer.dashboard')->with('success', __('officer.flash_item_logged'));
     }
 
     public function dashboard(Request $request){        
@@ -45,7 +45,7 @@ class ItemController extends Controller{
 
     public function transfer(Item $item){
         $item->update(['status' => 'transferred']);
-        return back()->with('success', 'Marked as transferred to BM (Business Management)');
+        return back()->with('success', __('officer.flash_item_transferred'));
     }
 
     public function index(Request $request){
@@ -86,12 +86,12 @@ class ItemController extends Controller{
         unset($validated['photo']);
         $item->update($validated);
 
-        return redirect()->route('items.show', $item)->with('success', 'Item updated.');
+        return redirect()->route('items.show', $item)->with('success', __('officer.flash_item_updated'));
     }
 
     public function destroy(Item $item){
         Storage::disk('public')->delete($item->photo_path);
         $item->delete();
-        return redirect()->route('officer.dashboard')->with('success', 'Item deleted.');
+        return redirect()->route('officer.dashboard')->with('success', __('officer.flash_item_deleted'));
     }
 }

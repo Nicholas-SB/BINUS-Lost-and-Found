@@ -2,7 +2,7 @@
 @section('content')
 <div class='container py-4'>
     @auth
-        <a href="{{ route('officer.dashboard') }}" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back to dashboard</a>
+        <a href="{{ route('officer.dashboard') }}" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> {{ __('officer.back_to_dashboard') }}</a>
     @else
         <a href="{{ route('items.index') }}" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> {{ __('site.back_to_list') }}</a>
     @endauth
@@ -31,31 +31,31 @@
                     {{-- Officer-only actions (guests never see this block) --}}
                     @auth
                         <hr>
-                        <p class="mb-2"><strong>Status: </strong>{{ $item->status }}</p>
+                        <p class="mb-2"><strong>{{ __('officer.status') }}: </strong>{{ __('officer.status_' . $item->status) }}</p>
 
                         @if ($item->claim)
                             <p class="text-muted small mb-2">
-                                Claimed by {{ $item->claim->claimant_name }} on {{ $item->claim->claimed_at->format('d M Y, H:i') }}
+                                {{ __('officer.claimed_by', ['name' => $item->claim->claimant_name, 'date' => $item->claim->claimed_at->translatedFormat('d M Y, H:i')]) }}
                             </p>
                         @endif
 
                         <div class="d-flex flex-wrap gap-2">
                             @if ($item->status !== 'claimed')
-                                <a href="{{ route('officer.claims.create', $item) }}" class="btn btn-primary btn-sm">Record Claim</a>
+                                <a href="{{ route('officer.claims.create', $item) }}" class="btn btn-primary btn-sm">{{ __('officer.record_claim') }}</a>
                             @else
-                                <a href="{{ route('officer.claims.print', $item->claim) }}" class="btn btn-outline-secondary btn-sm">Reprint Claim Slip</a>
-                                <form method="POST" action="{{ route('officer.claims.destroy', $item->claim) }}" class="d-inline" onsubmit="return confirm('Cancel this claim?')">
+                                <a href="{{ route('officer.claims.print', $item->claim) }}" class="btn btn-outline-secondary btn-sm">{{ __('officer.reprint_slip') }}</a>
+                                <form method="POST" action="{{ route('officer.claims.destroy', $item->claim) }}" class="d-inline" onsubmit="return confirm(@js(__('officer.confirm_cancel_claim')))">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-outline-primary btn-sm">Cancel Claim</button>
+                                    <button class="btn btn-outline-primary btn-sm">{{ __('officer.cancel_claim') }}</button>
                                 </form>
                             @endif
 
-                            <a href="{{ route('officer.items.edit', $item) }}" class="btn btn-outline-primary btn-sm">Edit</a>
-                            <form method="POST" action="{{ route('officer.items.destroy', $item) }}" class="d-inline" onsubmit="return confirm('Delete this item? This cannot be undone')">
+                            <a href="{{ route('officer.items.edit', $item) }}" class="btn btn-outline-primary btn-sm">{{ __('officer.edit') }}</a>
+                            <form method="POST" action="{{ route('officer.items.destroy', $item) }}" class="d-inline" onsubmit="return confirm(@js(__('officer.confirm_delete')))">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-outline-danger btn-sm">Delete</button>
+                                <button class="btn btn-outline-danger btn-sm">{{ __('officer.delete') }}</button>
                             </form>
                         </div>
                     @endauth

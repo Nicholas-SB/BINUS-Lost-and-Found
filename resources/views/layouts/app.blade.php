@@ -33,10 +33,10 @@
                     <ul class="navbar-nav me-auto">
                         @auth
                             <li class='nav-item'>
-                                <a class="nav-link" href="{{ route('officer.dashboard') }}">{{ __('Dashboard') }}</a>
+                                <a class="nav-link" href="{{ route('officer.dashboard') }}">{{ __('officer.dashboard') }}</a>
                             </li>
                             <li class='nav-item'>
-                                <a class="nav-link" href="{{ route('officer.items.create') }}">{{ __('Post an Item') }}</a>
+                                <a class="nav-link" href="{{ route('officer.items.create') }}">{{ __('officer.post_item') }}</a>
                             </li>
                         @endauth
 
@@ -78,7 +78,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('officer.logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

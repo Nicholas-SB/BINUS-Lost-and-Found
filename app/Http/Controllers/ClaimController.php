@@ -11,7 +11,7 @@ class ClaimController extends Controller
 {
     public function create(Item $item){
         if ($item->status === 'claimed'){// can use no conversion, but might cause bugs
-            return redirect()->route('officer.dashboard')->with('error', 'That item is already claimed.');
+            return redirect()->route('officer.dashboard')->with('error', __('officer.flash_already_claimed'));
         }
 
         return view('officer.claims.create', compact('item'));
@@ -44,6 +44,6 @@ class ClaimController extends Controller
             $item->update(['status' => 'unclaimed']);
             $claim->delete();
         });
-        return redirect()->route('items.show', $item)->with('success', 'Claim reverted.');
+        return redirect()->route('items.show', $item)->with('success', __('officer.flash_claim_reverted'));
     }
 }

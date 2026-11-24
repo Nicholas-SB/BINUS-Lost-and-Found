@@ -13,7 +13,7 @@ return [
     'to' => 'To',
     'no_items' => 'No items found.',
 
-    // categories (database values stay in English; only the label is translated)
+    // categories
     'categories' => [
         'Electronics' => 'Electronics',
         'Bottles' => 'Bottles',
