@@ -31,7 +31,7 @@ return [
     // guide
     'guide_title' => 'How to Claim an Item?',
     'guide_step1' => 'Find your item on the list & note its name, location, and date found.',
-    'guide_step2' => 'Prepare a printed Black & White copy of your BINUSIAN card and a receipt of the lost item.',
+    'guide_step2' => 'Prepare a printed Black & White copy of your BINUSIAN card and a receipt of the lost item (online receipts are accepted too).',
     'guide_non_binusian' => 'Not a Binusian? Bring a copy of another valid government-issued ID.',
     'guide_step3' => 'Go to the Lost & Found receptionist in the lobby.',
     'guide_step4' => 'Ask the officer to claim your item.',

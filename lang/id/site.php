@@ -31,7 +31,7 @@ return [
     // guide
     'guide_title' => 'Bagaimana Cara Mengambil Barang?',
     'guide_step1' => 'Cari barang Anda di daftar dan catat nama, lokasi, serta tanggal ditemukannya.',
-    'guide_step2' => 'Siapkan fotokopi hitam-putih kartu BINUSIAN Anda dan bukti pembelian barang yang hilang.',
+    'guide_step2' => 'Siapkan fotokopi hitam-putih kartu BINUSIAN Anda dan bukti pembelian barang yang hilang (bukti pembelian online juga diterima).',
     'guide_non_binusian' => 'Bukan Binusian? Bawa fotokopi kartu identitas resmi lainnya.',
     'guide_step3' => 'Datangi resepsionis Lost & Found di lobi.',
     'guide_step4' => 'Minta petugas untuk mengklaim barang Anda.',
